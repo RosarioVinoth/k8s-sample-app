@@ -1,3 +1,4 @@
+# Your Flask app code (from the original prompt)
 import os
 import time
 import threading
@@ -77,7 +78,7 @@ def init_db_engine():
             DB_CONNECT_ATTEMPTS_TOTAL.labels(status='failure', is_timeout=timeout_label).inc()
             DB_CONNECT_LATENCY_MS.labels(status='failure').set(latency_ms)
             DB_CONNECT_LATENCY_HISTOGRAM.observe(latency_ms) # Even failed attempts have latency
-            
+
             app.logger.error(f"Error connecting to database: {e}")
             retries -= 1
             if retries > 0:
