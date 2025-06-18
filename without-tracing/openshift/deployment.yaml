@@ -1,14 +1,15 @@
-# deployment.yaml (updated with OpenTelemetry environment variables for Tempo)
-apiVersion: apps.openshift.io/v1
-kind: DeploymentConfig
+# deployment.yaml (Kubernetes Deployment instead of OpenShift DeploymentConfig)
+apiVersion: apps/v1 # Changed from apps.openshift.io/v1
+kind: Deployment # Changed from DeploymentConfig
 metadata:
   name: flask-db-metrics-app
   labels:
     app: flask-db-metrics-app
 spec:
   replicas: 1
-  selector:
-    app: flask-db-metrics-app
+  selector: # Added selector to match template labels
+    matchLabels:
+      app: flask-db-metrics-app
   template:
     metadata:
       labels:
@@ -16,7 +17,7 @@ spec:
     spec:
       containers:
       - name: flask-db-metrics-app
-        image: image-registry.openshift-image-registry.svc:5000/<your-project>/flask-db-metrics-app:latest # Replace <your-project>
+        image: ghcr.io/rosariovinoth/myk8sapp:latest
         ports:
         - containerPort: 5000 # The port your Flask app listens on
         env:
@@ -53,15 +54,6 @@ spec:
             secretKeyRef:
               name: db-credentials-secret
               key: DB_PORT
-
+        # Set to "true" to see simulated failures/timeouts
         - name: SIMULATE_DB_FAILURE
-          value: "false" # Set to "true" to see simulated failures/timeouts
-
-        # --- OpenTelemetry Environment Variables for Tempo ---
-        # This tells the OTLPSpanExporter where to send traces (Tempo's OTLP gRPC endpoint)
-        - name: OTEL_EXPORTER_OTLP_ENDPOINT
-          value: "http://tempo.<your-tempo-namespace>.svc.cluster.local:4317" # Replace <your-tempo-namespace>
-        - name: OTEL_SERVICE_NAME # Overrides the service name set in code, good for consistency
-          value: "flask-db-writer"
-        - name: OTEL_PYTHON_DISABLED_INSTRUMENTATION # If you want to disable any default auto-instrumentation
-          value: "false"
+          value: "false" 
