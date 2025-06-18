@@ -2,7 +2,7 @@
 
 # Use an official Python runtime as a parent image
 FROM python:3.9-slim-buster
-
+LABEL org.opencontainers.image.source https://github.com/RosarioVinoth/k8s-sample-app
 # Set the working directory in the container
 WORKDIR /app
 
