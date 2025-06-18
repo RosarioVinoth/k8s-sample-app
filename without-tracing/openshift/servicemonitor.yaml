@@ -4,10 +4,7 @@ kind: ServiceMonitor
 metadata:
   name: flask-db-metrics-app-monitor
   labels:
-    release: prometheus-stack # This label depends on how your Prometheus Operator is configured.
-                              # It's common for a Prometheus deployment to target ServiceMonitors
-                              # with a specific 'release' label (e.g., 'prometheus-stack' or 'kube-prometheus-stack').
-                              # Adjust this label to match your Prometheus setup.
+    prometheus: user-workload
 spec:
   selector:
     matchLabels:
