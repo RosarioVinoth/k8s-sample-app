@@ -20,7 +20,7 @@ EXPOSE 5000
 
 # Run the Flask app when the container starts
 # Using gunicorn for production-ready deployment is recommended:
-CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]
+# CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]
 # For simplicity, the Flask's built-in server line is now commented out.
-# CMD ["python", "app.py"]
+CMD ["python", "app.py"]
 
