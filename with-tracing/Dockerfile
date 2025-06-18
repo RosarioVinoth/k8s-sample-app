@@ -10,8 +10,7 @@ WORKDIR /app
 COPY requirements.txt .
 
 # Install any needed packages specified in requirements.txt
-# Added gunicorn to the installation
-RUN pip install --no-cache-dir -r requirements.txt gunicorn
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the Flask application code into the container at /app
 COPY app.py .
@@ -21,7 +20,6 @@ EXPOSE 5000
 
 # Run the Flask app when the container starts
 # Using gunicorn for production-ready deployment is recommended:
-CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]
-# For simplicity, the Flask's built-in server line is now commented out.
-# CMD ["python", "app.py"]
-
+# CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]
+# For simplicity and direct execution in this example, we use Flask's built-in server.
+CMD ["python", "app.py"]

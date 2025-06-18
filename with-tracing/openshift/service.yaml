@@ -1,0 +1,15 @@
+# service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: flask-db-metrics-app-service
+  labels:
+    app: flask-db-metrics-app # Important for ServiceMonitor to select this service
+spec:
+  selector:
+    app: flask-db-metrics-app # Matches the label on your DeploymentConfig's pod template
+  ports:
+    - protocol: TCP
+      port: 5000 # Service port
+      targetPort: 5000 # Container port
+  type: ClusterIP # Internal service within the cluster

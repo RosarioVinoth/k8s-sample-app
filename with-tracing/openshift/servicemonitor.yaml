@@ -1,0 +1,19 @@
+# servicemonitor.yaml
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: flask-db-metrics-app-monitor
+  labels:
+    release: prometheus-stack # This label depends on how your Prometheus Operator is configured.
+                              # It's common for a Prometheus deployment to target ServiceMonitors
+                              # with a specific 'release' label (e.g., 'prometheus-stack' or 'kube-prometheus-stack').
+                              # Adjust this label to match your Prometheus setup.
+spec:
+  selector:
+    matchLabels:
+      app: flask-db-metrics-app # Selects the service with this label
+  endpoints:
+  - port: 5000 # The port defined in your Service (targetPort is 5000)
+    path: /metrics # The endpoint where your Flask app exposes Prometheus metrics
+    interval: 15s # How often Prometheus should scrape this endpoint
+    scrapeTimeout: 10s # Timeout for scraping
