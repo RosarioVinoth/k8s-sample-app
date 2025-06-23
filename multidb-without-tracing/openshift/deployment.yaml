@@ -26,4 +26,3 @@ spec:
             name: db-credentials-secret
         # No individual 'env' entries needed for ConfigMap or Secret keys
       restartPolicy: Always
-    
