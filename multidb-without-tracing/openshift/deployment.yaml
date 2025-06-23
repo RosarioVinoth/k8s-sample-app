@@ -23,6 +23,6 @@ spec:
         - configMapRef: # Reference the new ConfigMap
             name: db-configmap
         - secretRef:    # Continue referencing the Secret for sensitive data
-            name: db-credentials-secret
+            name: db-credentials-secret-multidb
         # No individual 'env' entries needed for ConfigMap or Secret keys
       restartPolicy: Always
