@@ -1,6 +1,6 @@
 # Use a lightweight Python base image
 FROM python:3.9-slim-buster
-
+LABEL org.opencontainers.image.source https://github.com/RosarioVinoth/k8s-sample-app
 # Set the working directory inside the container
 WORKDIR /app
 
