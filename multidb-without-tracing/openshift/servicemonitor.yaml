@@ -2,13 +2,13 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: flask-db-metrics-app-monitor
+  name: my-flask-app-multidb-monitor
   labels:
     prometheus: user-workload
 spec:
   selector:
     matchLabels:
-      app: flask-db-metrics-app # Selects the service with this label
+      app: my-flask-app-multidb # Selects the service with this label
   endpoints:
   - port: flask # The port defined in your Service (targetPort is 5000)
     path: /metrics # The endpoint where your Flask app exposes Prometheus metrics
