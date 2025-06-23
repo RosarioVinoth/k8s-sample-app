@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-flask-app-deployment
+  name: my-flask-app-multidb
   labels:
-    app: my-flask-app
+    app: my-flask-app-multidb
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: my-flask-app
+      app: my-flask-app-multidb
   template:
     metadata:
       labels:
-        app: my-flask-app
+        app: my-flask-app-multidb
     spec:
       containers:
-      - name: my-flask-app-container
+      - name: my-flask-app-multidb-container
         image: ghcr.io/rosariovinoth/myk8sapp:multidb
         ports:
         - containerPort: 5000
