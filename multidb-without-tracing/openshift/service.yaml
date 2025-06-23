@@ -12,4 +12,5 @@ spec:
     - protocol: TCP
       port: 5000 # Service port
       targetPort: 5000 # Container port
+      name: flask
   type: ClusterIP # Internal service within the cluster
