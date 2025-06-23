@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: my-flask-app-container
-        image: your-image-name # Replace with your Flask app image
+        image: ghcr.io/rosariovinoth/myk8sapp:multidb
         ports:
         - containerPort: 5000
         envFrom:
