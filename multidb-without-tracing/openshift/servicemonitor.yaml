@@ -1,0 +1,16 @@
+# servicemonitor.yaml
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: flask-db-metrics-app-monitor
+  labels:
+    prometheus: user-workload
+spec:
+  selector:
+    matchLabels:
+      app: flask-db-metrics-app # Selects the service with this label
+  endpoints:
+  - port: flask # The port defined in your Service (targetPort is 5000)
+    path: /metrics # The endpoint where your Flask app exposes Prometheus metrics
+    interval: 15s # How often Prometheus should scrape this endpoint
+    scrapeTimeout: 10s # Timeout for scraping

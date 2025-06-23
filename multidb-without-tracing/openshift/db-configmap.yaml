@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: db-configmap
+data:
+  DATABASE_NAMES: "prod,analytics" # Update this list as needed, comma-separated
+  # You can add other non-sensitive configuration variables here if desired
+  DB_WRITE_INTERVAL_SECONDS: "5" # Example: move write interval here
+  SIMULATE_DB_FAILURE: "false"   # Example: move simulation flag here
