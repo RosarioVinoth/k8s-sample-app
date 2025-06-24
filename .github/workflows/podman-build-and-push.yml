@@ -72,15 +72,16 @@ jobs:
           podman build --tag "$FIRST_TAG" .
           # Store all generated tags as an environment variable for the next step.
           # echo "ALL_IMAGE_TAGS=${IMAGE_TAGS}" >> $GITHUB_ENV
+          podman push "$FIRST_TAG"
 
       # Step 6: Push the image to GitHub Container Registry using Podman.
       # This step pushes the built image with all generated tags to GHCR.
-      - name: Push image to GHCR with Podman
-        run: |
+     # - name: Push image to GHCR with Podman
+      #  run: |
           # IMAGE_TAGS="${{ steps.meta.outputs.tags }}"
           # Split the tags into an array and push each one.
           # IFS=$'\n' read -d '' -r -a tags_array <<< "$IMAGE_TAGS"
-          podman images
+       #   podman images
           #for tag in "${tags_array[@]}"; do
           #  echo "Pushing image tag: $tag"
            # podman push "$tag"
