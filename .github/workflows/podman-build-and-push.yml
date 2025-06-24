@@ -80,6 +80,7 @@ jobs:
           IMAGE_TAGS="${{ steps.meta.outputs.tags }}"
           # Split the tags into an array and push each one.
           IFS=$'\n' read -d '' -r -a tags_array <<< "$IMAGE_TAGS"
+          podman images
           for tag in "${tags_array[@]}"; do
             echo "Pushing image tag: $tag"
             podman push "$tag"
