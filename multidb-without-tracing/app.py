@@ -224,6 +224,14 @@ if __name__ == '__main__':
     for db_conf in DB_CONFIGS:
         create_table(db_conf)
 
+        # Initialize metrics for each database to ensure they are always exposed, even if 0
+        db_name_label = db_conf['name']
+        DB_WRITE_SUCCESS_TOTAL.labels(database_name=db_name_label).inc(0)
+        DB_WRITE_FAILURE_TOTAL.labels(database_name=db_name_label).inc(0)
+        DB_WRITE_TIMEOUT_TOTAL.labels(database_name=db_name_label).inc(0)
+        # For Histogram, we don't need to explicitly touch it with 0, as it accumulates observations.
+        # Its existence is determined by its first observation.
+
     db_writer_thread = threading.Thread(target=periodic_db_writer, daemon=True)
     db_writer_thread.start()
 
