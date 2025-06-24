@@ -67,6 +67,7 @@ jobs:
           IMAGE_TAGS="${{ steps.meta.outputs.tags }}"
           FIRST_TAG=$(echo "$IMAGE_TAGS" | head -n 1)
           echo "Building image with tag: $FIRST_TAG"
+          pwd
           podman build --tag "$FIRST_TAG" .
           # Store all generated tags as an environment variable for the next step.
           echo "ALL_IMAGE_TAGS=${IMAGE_TAGS}" >> $GITHUB_ENV
