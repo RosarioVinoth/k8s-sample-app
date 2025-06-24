@@ -69,7 +69,7 @@ jobs:
           echo "Building image with tag: $FIRST_TAG"
           pwd
           cd multidb-without-tracing
-          podman build --tag multidbx .
+          podman build --tag "$FIRST_TAG" .
           # Store all generated tags as an environment variable for the next step.
           echo "ALL_IMAGE_TAGS=${IMAGE_TAGS}" >> $GITHUB_ENV
 
