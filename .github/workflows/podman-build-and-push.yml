@@ -77,11 +77,11 @@ jobs:
       # This step pushes the built image with all generated tags to GHCR.
       - name: Push image to GHCR with Podman
         run: |
-          IMAGE_TAGS="${{ steps.meta.outputs.tags }}"
+          # IMAGE_TAGS="${{ steps.meta.outputs.tags }}"
           # Split the tags into an array and push each one.
-          IFS=$'\n' read -d '' -r -a tags_array <<< "$IMAGE_TAGS"
+          # IFS=$'\n' read -d '' -r -a tags_array <<< "$IMAGE_TAGS"
           podman images
-          for tag in "${tags_array[@]}"; do
-            echo "Pushing image tag: $tag"
-            podman push "$tag"
-          done
+          #for tag in "${tags_array[@]}"; do
+          #  echo "Pushing image tag: $tag"
+           # podman push "$tag"
+         # done
