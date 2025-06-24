@@ -163,7 +163,7 @@ def write_timestamp_to_db(db_config):
             # Simulate a timeout or failure occasionally for demonstration.
             # Only simulate for a database named 'db1' for consistent testing.
             if os.getenv('SIMULATE_DB_FAILURE', 'false').lower() == 'true' and \
-               datetime.now().second % 10 == 0 and database_name_label == "db1":
+               #datetime.now().second % 10 == 0 and database_name_label == "db1":
                 raise Psycopg2OperationalError(f"Simulated database connection error or timeout for {database_name_label}")
 
             conn = get_db_connection(db_config)
