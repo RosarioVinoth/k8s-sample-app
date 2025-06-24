@@ -76,26 +76,26 @@ except ValueError:
 
 # --- Prometheus Metrics Initialization ---
 DB_WRITE_LATENCY = Histogram(
-    'db_write_latency_seconds',
+    'multidb_write_latency_seconds',
     'Latency of database write operations to the timestamps table per database.',
     ['database_name'], # Label to distinguish metrics by database
     buckets=(.005, .01, .025, .05, .1, .25, .5, 1.0, 2.5, 5.0, 10.0, float('inf'))
 )
 
 DB_WRITE_SUCCESS_TOTAL = Counter(
-    'db_write_success_total',
+    'multidb_write_success_total',
     'Total count of successful database write operations per database.',
     ['database_name']
 )
 
 DB_WRITE_FAILURE_TOTAL = Counter(
-    'db_write_failure_total',
+    'multidb_write_failure_total',
     'Total count of failed database write operations per database.',
     ['database_name']
 )
 
 DB_WRITE_TIMEOUT_TOTAL = Counter(
-    'db_write_timeout_total',
+    'multidb_write_timeout_total',
     'Total count of database write operations that timed out (simulated) per database.',
     ['database_name']
 )
