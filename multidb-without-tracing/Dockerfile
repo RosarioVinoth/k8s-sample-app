@@ -22,13 +22,13 @@ EXPOSE 5000
 # -w 4: Specifies 4 worker processes (adjust based on your CPU cores and application's nature)
 # -b 0.0.0.0:5000: Binds Gunicorn to all network interfaces on port 5000
 # app:app: Specifies the module (app.py) and the Flask application instance (app) within it
-CMD ["gunicorn", \
-     "--access-logfile", "-", \
-     "--error-logfile", "-", \
-     "-w", "4", \
-     "-b", "0.0.0.0:5000", \
-     "app:app"]
-
+#CMD ["gunicorn", \
+#     "--access-logfile", "-", \
+#     "--error-logfile", "-", \
+#     "-w", "4", \
+#     "-b", "0.0.0.0:5000", \
+#     "app:app"]
+CMD ["python", "app.py"]
 # --- How to Build and Run ---
 # 1. Ensure you have 'app.py' and 'requirements.txt' in the same directory as this Dockerfile.
 # 2. Build the Docker image:
