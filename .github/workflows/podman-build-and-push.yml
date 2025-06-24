@@ -69,10 +69,10 @@ jobs:
           echo "Building image with tag: $FIRST_TAG"
           pwd
           cd multidb-without-tracing
-          podman build --tag "$FIRST_TAG" .
+          podman build --tag latest .
           # Store all generated tags as an environment variable for the next step.
           # echo "ALL_IMAGE_TAGS=${IMAGE_TAGS}" >> $GITHUB_ENV
-          podman push "$FIRST_TAG"
+          podman push latest
 
       # Step 6: Push the image to GitHub Container Registry using Podman.
       # This step pushes the built image with all generated tags to GHCR.
